@@ -1,21 +1,27 @@
 const prices = document.querySelectorAll(".price");
+const section = document.querySelector(".prices");
 
-prices.forEach(price => {
-    let start = 0;
-    let end = +price.dataset.price;
+let started = false;
 
-    const counter = setInterval(() => {
-        start++;
-        price.textContent = "$" + start;
+window.onscroll = function () {
+  if (window.scrollY >= section.offsetTop - 300) {
+    if (!started) {
+      prices.forEach((price) => startCount(price));
+      started = true;
+    }
+  }
+};
 
-        if (start >= end) {
-            clearInterval(counter);
-        }
-    }, 40);
-});
+function startCount(price) {
+  let start = 0;
+  let end = +price.dataset.price;
 
-AOS.init({
-    duration: 800,
-    once: true,
-    offest: 100
-});
+  let counter = setInterval(() => {
+    start++;
+    price.textContent = "$" + start;
+
+    if (start >= end) {
+      clearInterval(counter);
+    }
+  }, 2000 / end);
+}
