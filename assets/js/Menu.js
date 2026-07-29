@@ -26,8 +26,9 @@ function startCounter(price) {
     }
   }, 2000 / end);
 }
-Aos.init(){
-  duration:100;
-  once:true;
-  offest:200;
-}
+AOS.init({
+  duration: 1000,
+  offset: 100,
+  once: true,
+  easing: "ease-in-out"
+});
